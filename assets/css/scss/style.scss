@@ -1,4 +1,316 @@
-body {
-    background: red;
-    color: green;
+/* Vars
+   ========================================================================== */
+$black:#222221;
+$green: #1d332a;
+$lightgreen: #b7ba69;
+$gray: #dddddd;
+$transition: all 0.2s ease-in-out;
+
+/* Type
+   ========================================================================== */
+
+p{
+    margin: 0;
+}
+
+/* Base
+   ========================================================================== */
+
+html {
+    height: 100svh;
+}
+body{
+    font-family:"Sohne", sans-serif;
+    font-weight: 400;
+    color: $green;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    -webkit-font-smoothing:antialiased;
+}
+
+/* Helper
+   ========================================================================== */
+
+.reponsive{
+    width: 100px;
+    height: auto;
+    display: block;
+}
+
+
+.button {
+    background: $black;
+    color: $gray;
+    padding: 0 16px;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 16px;
+    pointer-events: all;
+    transition: $transition;
+    display: inline-flex;
+    & > span {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        & > span {
+            position: relative;
+            display: inline-block;
+            transition: transform .3s cubic-bezier(.75,0,.2,1);
+            
+            &::before {
+                color: $gray;
+                content: attr(data-hover);
+                position: absolute;
+                top: 100%;
+                transform: translateZ(0);
+               }
+        }
+    }
+    &:hover{         
+        color: currentColor;
+        & > span{
+           & > span {
+                transform: translateY(-100%);
+            }
+        }
+    }
+} 
+
+/* Header
+   ========================================================================== */
+
+#header{
+    & #header__logo{
+        width: 100px;
+        height: auto;
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        z-index: 2;
+        & svg{
+            & path {
+                fill: $green;
+                transition: $transition;
+            }
+        }
+        &:hover{
+                & svg{
+                    & path {
+                        fill: $green;
+                    }
+                } 
+            }
+    }
+}
+
+
+/* Main
+   ========================================================================== */
+
+#main {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+}
+
+/* Page
+   ========================================================================== */
+
+#page {
+    padding: 150px 0 30px 0;
+    & p {
+        font-size: 14px;
+        line-height: 17px;
+        margin: 0 0 17px 0;
+        & a{
+            color: inherit;
+            hyphens: auto;
+        }
+    }
+}
+
+.button--page{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Content
+   ========================================================================== */
+
+#content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    @media (max-width: 767px){
+        align-items: flex-start;
+    }
+    & img {
+        width: 100%;
+        max-width: 185px;
+        height: auto;
+        display: block;
+        margin-bottom: 26px;
+        @media (max-width: 767px){
+             margin-bottom: 22px;
+        }
+    }
+    & p {
+        text-align: center;
+        font-size: 45px;
+        line-height: 55px;
+        & a {
+            color: $lightgreen;
+            text-decoration: none;
+            transition: $transition;
+            &:hover{
+                color: $gray;
+            }
+        }
+        @media (max-width: 991px){
+            font-size: 35px;
+            line-height: 45px;
+        }
+        @media (max-width: 767px){
+            font-size: 20px;
+            line-height: 24px;
+            text-align: left;
+        }
+    }
+}
+
+/* Textbox
+   ========================================================================== */
+
+#textbox {
+    width: 100%;
+    max-width: 333px;
+    font-family:"SohneMono", sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 20px 23px 23px 23px;
+    background: $green;
+    color: $lightgreen;
+    position: absolute;
+    top: 0;
+    right: 0;
+    hyphens: auto;
+    @media (max-width: 767px){
+        display: none;
+    }
+}
+
+/* Slideshow
+   ========================================================================== */
+
+#slideshow {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    user-select: none;
+    & .swiper-wrapper{
+        height: 100%;
+        width: 100%; 
+        & .swiper-slide{
+            height: 100%;
+            width: 100%;
+            & img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                outline: 1px dotted $lightgreen;
+                outline-offset: -1px;
+            }
+        }
+    }
+}
+
+/* Contact
+   ========================================================================== */
+
+#contact {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 16px;
+    line-height: 19px;
+    z-index: 2;
+    & p {
+        margin-bottom: 19px;
+    }
+}
+
+
+/* Footer
+   ========================================================================== */
+
+#footer{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;  
+    z-index: 2;
+    & a {
+        color: $green;
+        text-decoration: none;
+        transition: $transition;
+        font-size: 11px;
+        line-height: 1;
+        &:hover{
+            color: $lightgreen;
+        }
+    } 
+}
+
+/* Page Contact Mods
+   ========================================================================== */
+
+.page-template-page-contact-php{
+    background: $green;
+    color: $lightgreen;
+    #header{
+        & #header__logo{
+            & svg{
+                & path {
+                    fill: $lightgreen;
+                }
+            }
+            &:hover{
+                & svg{
+                    & path {
+                        fill: $gray;
+                    }
+                } 
+            }
+        }
+    }
+    #footer{
+        & a {
+            color: $lightgreen;
+            &:hover{
+                color: $gray;
+            }
+        } 
+    }
+}
+
+/* Page  Mods
+   ========================================================================== */
+
+.page-template-default{
+    height: auto;
+    & #footer{
+        display: none;
+    }
 }

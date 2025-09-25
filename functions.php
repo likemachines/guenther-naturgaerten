@@ -19,8 +19,8 @@ add_theme_support( 'post-thumbnails' );
 */
 register_nav_menus(
 	array(
-		'header' => __( 'Header Menu', 'TEXTDOMAIN' ),
-		'footer' => __( 'Footer Menu', 'TEXTDOMAIN' ),
+		'header' => __( 'Header Menu', 'guenther' ),
+		'footer' => __( 'Footer Menu', 'guenther' ),
 	)
 );
 
@@ -40,21 +40,21 @@ function special_nav_class( $classes, $item, $args ) {
 /*
  * Load Scripts and Styles
  */
-function TEXTDOMAIN_scripts() {
-    wp_enqueue_style('app', get_template_directory_uri() . '/dist/style.css', array(), '0.1.2', 'all' );
-    wp_enqueue_script('app', get_template_directory_uri() . '/dist/app.js', array(), '0.1.2', 'true' );
+function guenther_scripts() {
+    wp_enqueue_style('app', get_template_directory_uri() . '/dist/style.css', array(), '0.1.3', 'all' );
+    wp_enqueue_script('app', get_template_directory_uri() . '/dist/app.js', array(), '0.1.3', 'true' );
   
 }
-add_action( 'wp_enqueue_scripts', 'TEXTDOMAIN_scripts' );
+add_action( 'wp_enqueue_scripts', 'guenther_scripts' );
 
 /*
 * Add SVG Support
 */
-function TEXTDOMAIN_svg ( $svg_mime ){
+function guenther_svg ( $svg_mime ){
 	$svg_mime['svg'] = 'image/svg+xml';
 	return $svg_mime;
 }
-add_filter( 'upload_mimes', 'TEXTDOMAIN_svg' );
+add_filter( 'upload_mimes', 'guenther_svg' );
 /*
 * Remove DNS Prefetch (DSGVO)
 */ 
@@ -70,10 +70,10 @@ remove_action( 'wp_head', 'wlwmanifest_link');
 /*
 * Remove WordPress version number
 */ 
-function TEXTDOMAIN_remove_version() {
+function guenther_remove_version() {
 	return '';
 }
-add_filter('the_generator', 'TEXTDOMAIN_remove_version');
+add_filter('the_generator', 'guenther_remove_version');
 
 
 /**
@@ -125,26 +125,26 @@ function custom_post_type_faqs() {
  
 // Set UI labels for Custom Post Type
     $labels = array(
-        'name'                => _x( 'FAQs', 'Post Type General Name', 'TEXTDOMAIN' ),
-        'singular_name'       => _x( 'FAQ', 'Post Type Singular Name', 'TEXTDOMAIN' ),
-        'menu_name'           => __( 'FAQs', 'TEXTDOMAIN' ),
-        'parent_item_colon'   => __( 'Übergeordnete FAQs', 'TEXTDOMAIN' ),
-        'all_items'           => __( 'Alle FAQs', 'TEXTDOMAIN' ),
-        'view_item'           => __( 'FAQs ansehen', 'TEXTDOMAIN' ),
-        'add_new_item'        => __( 'FAQ hinzufügen', 'TEXTDOMAIN' ),
-        'add_new'             => __( 'Neue FAQ hinzufügen', 'TEXTDOMAIN' ),
-        'edit_item'           => __( 'FAQ bearbeiten', 'TEXTDOMAIN' ),
-        'update_item'         => __( 'FAQ ändern', 'TEXTDOMAIN' ),
-        'search_items'        => __( 'FAQ suchen', 'TEXTDOMAIN' ),
-        'not_found'           => __( 'Not Found', 'TEXTDOMAIN' ),
-        'not_found_in_trash'  => __( 'Not found in Trash', 'TEXTDOMAIN' ),
+        'name'                => _x( 'FAQs', 'Post Type General Name', 'guenther' ),
+        'singular_name'       => _x( 'FAQ', 'Post Type Singular Name', 'guenther' ),
+        'menu_name'           => __( 'FAQs', 'guenther' ),
+        'parent_item_colon'   => __( 'Übergeordnete FAQs', 'guenther' ),
+        'all_items'           => __( 'Alle FAQs', 'guenther' ),
+        'view_item'           => __( 'FAQs ansehen', 'guenther' ),
+        'add_new_item'        => __( 'FAQ hinzufügen', 'guenther' ),
+        'add_new'             => __( 'Neue FAQ hinzufügen', 'guenther' ),
+        'edit_item'           => __( 'FAQ bearbeiten', 'guenther' ),
+        'update_item'         => __( 'FAQ ändern', 'guenther' ),
+        'search_items'        => __( 'FAQ suchen', 'guenther' ),
+        'not_found'           => __( 'Not Found', 'guenther' ),
+        'not_found_in_trash'  => __( 'Not found in Trash', 'guenther' ),
     );
      
 // Set other options for Custom Post Type
      
     $args = array(
-        'label'               => __( 'faqs', 'TEXTDOMAIN' ),
-        'description'         => __( 'FAQs', 'TEXTDOMAIN' ),
+        'label'               => __( 'faqs', 'guenther' ),
+        'description'         => __( 'FAQs', 'guenther' ),
         'labels'              => $labels,
         // Features this CPT supports in Post Editor
         'supports'            => array( 'title', 'editor'),
@@ -240,21 +240,21 @@ function codeless_remove_type_attr($tag, $handle)
 /*
 * Open Graph Tags
 */
-add_action( 'wp_head', 'TEXTDOMAIN_load_open_graph' );
+add_action( 'wp_head', 'guenther_load_open_graph' );
  
-function TEXTDOMAIN_load_open_graph() {
+function guenther_load_open_graph() {
 
     global $post;
      
     // standard image for pages without post thumbnail
-    $TEXTDOMAIN_site_logo = get_stylesheet_directory_uri() . '/assets/img/logo.svg';
+    $guenther_site_logo = get_stylesheet_directory_uri() . '/assets/img/logo.svg';
      
     // if homepage
     if ( is_front_page() ) { 
         echo '<meta property="og:type" content="website" />';
         echo '<meta property="og:url" content="' . get_bloginfo( 'url' ) . '" />';
         echo '<meta property="og:title" content="' . esc_attr( get_bloginfo( 'name' ) ) . '" />';
-        echo '<meta property="og:image" content="' . $TEXTDOMAIN_site_logo . '" />';
+        echo '<meta property="og:image" content="' . $guenther_site_logo . '" />';
         echo '<meta property="og:description" content="' . esc_attr( get_bloginfo( 'description' ) ) . '" />';
     }
      
@@ -267,7 +267,7 @@ function TEXTDOMAIN_load_open_graph() {
             $kb_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
             echo '<meta property="og:image" content="' . esc_attr( $kb_thumbnail[0] ) . '" />';
         } else
-            echo '<meta property="og:image" content="' . $TEXTDOMAIN_site_logo . '" />';
+            echo '<meta property="og:image" content="' . $guenther_site_logo . '" />';
             echo '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '" />';
         }
 }
@@ -293,12 +293,12 @@ add_filter( 'comments_open', 'filter_media_comment_status', 10 , 2 );
 * Remove unnecessary scripts and styles
 */
 /*
-add_action( 'wp_print_styles', 'TEXTDOMAIN_deregister_styles', 100 );
-function TEXTDOMAIN_deregister_styles() {
+add_action( 'wp_print_styles', 'guenther_deregister_styles', 100 );
+function guenther_deregister_styles() {
     wp_dequeue_style( handle );
 }
-add_action( 'wp_print_scripts', 'TEXTDOMAIN_dequeue_script', 100 );
-function TEXTDOMAIN_dequeue_script() {
+add_action( 'wp_print_scripts', 'guenther_dequeue_script', 100 );
+function guenther_dequeue_script() {
     wp_dequeue_script( handle );
 }
 */

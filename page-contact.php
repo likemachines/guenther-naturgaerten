@@ -1,6 +1,6 @@
 <?php
 /*
-* Template Name: Startseite
+* Template Name: Kontakt
 */ get_header(); ?>
 
 <?php 
@@ -18,8 +18,14 @@ if( $images ): ?>
 </div>
 <?php endif; ?>
 
-<div id="textbox">
-    <?php the_field('textbox'); ?>
+<div id="content">
+    <?php 
+    $image = get_field('image');
+    $size = 'full';
+    if( $image ) {
+        echo wp_get_attachment_image( $image, $size );
+    } ?>
+    <?php the_field('content'); ?>
 </div>
 
 <div id="contact">
