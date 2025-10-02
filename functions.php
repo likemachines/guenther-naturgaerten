@@ -41,8 +41,8 @@ function special_nav_class( $classes, $item, $args ) {
  * Load Scripts and Styles
  */
 function guenther_scripts() {
-    wp_enqueue_style('app', get_template_directory_uri() . '/dist/style.css', array(), '0.1.3', 'all' );
-    wp_enqueue_script('app', get_template_directory_uri() . '/dist/app.js', array(), '0.1.3', 'true' );
+    wp_enqueue_style('app', get_template_directory_uri() . '/dist/style.css', array(), '1.0.3', 'all' );
+    wp_enqueue_script('app', get_template_directory_uri() . '/dist/app.js', array(), '1.0.0', 'true' );
   
 }
 add_action( 'wp_enqueue_scripts', 'guenther_scripts' );
